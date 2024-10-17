@@ -5,7 +5,15 @@ import numpy as np
 
 
 def prepare_cnn_input(image: np.ndarray) -> torch.Tensor:
-    """Return a tensor of shape (28, 28, 1)."""
+    """
+    Prepares input for a Convolutional Neural Network (CNN).
+
+    Args:
+        image (np.ndarray): Input image as a NumPy array.
+
+    Returns:
+        torch.Tensor: A tensor of shape (28, 28, 1), representing the input for the CNN.
+    """
     return torch.tensor(image, dtype=torch.float32)
 
 
@@ -58,9 +66,10 @@ def get_input_preparer(
     Raises:
         ValueError: If the classifier name is unknown.
     """
-    try:
-        return INPUT_PREPARER_REGISTRY[classifier_name]
-    except KeyError:
+    if classifier_name not in INPUT_PREPARER_REGISTRY:
+        available_options = ", ".join(INPUT_PREPARER_REGISTRY.keys())
         raise ValueError(
-            f"Unknown classifier: '{classifier_name}'. Available options are: {', '.join(INPUT_PREPARER_REGISTRY.keys())}."
+            f"Unknown classifier: '{classifier_name}'. Available options are: {available_options}."
         )
+
+    return INPUT_PREPARER_REGISTRY[classifier_name]

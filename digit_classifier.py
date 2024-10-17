@@ -1,3 +1,5 @@
+from typing import Callable
+
 import numpy as np
 
 from utils.classifier_provider import get_classifier
@@ -11,14 +13,14 @@ class DigitClassifier:
         algorithm (str): The name of the algorithm to use for classification.
     """
 
-    def __init__(self, algorithm: str):
+    def __init__(self, algorithm: str) -> None:
         """
         Initializes the classifier with the specified algorithm.
 
         Args:
             algorithm (str): The algorithm to use, e.g., 'cnn', 'rf', or 'rand'.
         """
-        self._algorithm = get_classifier(algorithm)
+        self._algorithm: Callable[[np.ndarray], int] = get_classifier(algorithm)
 
     def predict(self, image: np.ndarray) -> int:
         """

@@ -13,7 +13,7 @@ class DigitClassificationInterface(ABC):
     for models that predict a digit (0-9) from an image, either in NumPy or PyTorch tensor format.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initialize the digit classification interface. This retrieves the appropriate input
         preparer function for the class, based on the class name.
@@ -44,4 +44,4 @@ class DigitClassificationInterface(ABC):
         Returns:
             int: Predicted digit (0-9).
         """
-        raise NotImplementedError("Subclasses must implement this method.")
+        pass

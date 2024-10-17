@@ -27,10 +27,11 @@ def get_classifier(classifier_name: str) -> Callable:
     Raises:
         ValueError: If the classifier_name is not recognized.
     """
-    try:
-        classifier_class = CLASSIFIER_REGISTRY[classifier_name]
-        return classifier_class()
-    except KeyError:
+    if classifier_name not in CLASSIFIER_REGISTRY:
+        available_classifiers = ", ".join(CLASSIFIER_REGISTRY.keys())
         raise ValueError(
-            f"Unknown classifier: '{classifier_name}'. Available options are: {', '.join(CLASSIFIER_REGISTRY.keys())}."
+            f"Unknown classifier: '{classifier_name}'. Available options are: {available_classifiers}."
         )
+
+    classifier_class = CLASSIFIER_REGISTRY[classifier_name]
+    return classifier_class()

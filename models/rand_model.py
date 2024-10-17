@@ -1,6 +1,6 @@
 # Model that provides random value (for simplicity) as a result of classification
 # with input 10x10 numpy array, the center crop of the image.
-from random import randrange
+from random import randint
 from typing import Any
 
 from models.digit_classification_interface import DigitClassificationInterface
@@ -22,4 +22,4 @@ class RandModel(DigitClassificationInterface):
         Returns:
             int: A random integer between 0 and 9.
         """
-        return randrange(10)
+        return randint(0, 9)

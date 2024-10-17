@@ -11,7 +11,7 @@ class ConvolutionalNeuralNetwork(DigitClassificationInterface):
     an image tensor of shape (28x28x1) and predicts a digit between 0 and 9.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes the CNN architecture with two convolutional layers, max-pooling,
         and two fully connected layers.

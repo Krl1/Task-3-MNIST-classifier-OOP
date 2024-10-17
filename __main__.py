@@ -18,7 +18,8 @@ def parse_arguments() -> argparse.Namespace:
         "-a",
         type=str,
         default="cnn",
-        help="Algorithm to use for classification",
+        choices=["cnn", "rf", "rand"],
+        help="Algorithm to use for classification. Choose from 'cnn', 'rf', or 'rand'. Default is 'cnn'.",
     )
     return parser.parse_args()
 
